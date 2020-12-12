@@ -44,7 +44,7 @@ class Player:
         self.name = player_name
         self.pos = pos
         self.health = health
-        self.height = heigth
+        self.height = height
         self.weight = weight
         self.inventory = inventory
 
