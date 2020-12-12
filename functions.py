@@ -1,11 +1,12 @@
 import datetime
 
+
 class World:
     def __init__(self):
-        self.time = datetime.datetime(year=0, month=0, day=1,\
-                                      hour=12, minute=0, second=0, microsecond=0, tzinfo=None)
+        self.time = datetime.datetime(year=0, month=0, day=1, hour=12, minute=0,
+                                      second=0, microsecond=0, tzinfo=None)
         self.is_rainy = False
-        # self.board = [20]*100
+        # self.board = [20] * 100
         
     def set_weather(self, rainy=True):
         self.is_rainy = rainy
@@ -17,20 +18,20 @@ class Inventory:
 
 
 class NPC:
-    def __init__(self, name, pos, health, heigth=5, is_friendly=True, weigth=55):
+    def __init__(self, name, pos, health, heigth=5, is_friendly=True, weight=55):
         self.name = name
         self.max_health = health
         self.health = health
         self.pos = pos
         self.heigth = heigth
         self.is_friendly = is_friendly
-        self.weigth = weigth
+        self.weight = weight
     
     def set_health(self, health):
         self.health = health
     
     def change_health(self, health_change):
-        if self.health + health_change <= self.max_health and self.health + health_change >= 0:
+        if (self.health + health_change <= self.max_health) and (self.health + health_change >= 0):
             self.health = self.health + health_change
         elif self.health + health_change < 0:
             self.health = 0
@@ -39,20 +40,20 @@ class NPC:
             
 
 class Player:
-    def __init__(self, player_name, pos, inventory=Inventory(), health=100, heigth=5, weigth=50):
+    def __init__(self, player_name, pos, inventory=Inventory(), health=100, heigth=5, weight=50):
         self.name = player_name
         self.pos = pos
         self.health = health
-        self.heigth = heigth
-        self.weigth = weigth
+        self.height = height
+        self.weight = weight
         self.inventory = inventory
 
 
 class Block:
-    def __init__(self, name, width=1, heigth=1, is_stackable=True, is_placed=True):
+    def __init__(self, name, width=1, height=1, is_stackable=True, is_placed=True):
         self.name = name
-        self.size = (width, heigth)
-        self.weigth = 1
+        self.size = (width, height)
+        self.weight = 1
         self.is_stackable = is_stackable
         self.is_placed = is_placed
     
@@ -61,16 +62,16 @@ class Block:
 
 
 class Quest:
-    def __init__(self, text, from, condition, complited_text):
+    def __init__(self, text, requester, condition, completed_text):
         self.text = text
-        self.from = from
+        self.requester = requester
         self.condition = condition
-        self.complited_text = complited_text
-        self.complited = False
+        self.completed_text = completed_text
+        self.completed = False
     
-    def check_for_complited(self):
+    def check_for_completed(self):
         if eval(self.condition):
-            self.set_complited()
+            self.set_completed()
     
-    def set_complited(self):
-        self.complited = True
+    def set_completed(self):
+        self.completed = True
