@@ -1,6 +1,16 @@
 import datetime
 
 
+class Menu:
+    def display(self):
+        pass
+
+
+class Game:
+    def display(self):
+        pass
+
+
 class World:
     def __init__(self):
         self.time = datetime.datetime(year=0, month=0, day=1, hour=12, minute=0,
@@ -40,7 +50,7 @@ class NPC:
             
 
 class Player:
-    def __init__(self, player_name, pos, inventory=Inventory(), health=100, heigth=5, weight=50):
+    def __init__(self, player_name, pos, inventory=Inventory(), health=100, height=5, weight=50):
         self.name = player_name
         self.pos = pos
         self.health = health
