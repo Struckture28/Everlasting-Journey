@@ -1,24 +1,25 @@
+from pygame import *
 import pygame
 
 from functions import *
-from config import *
 
 
-if __name__ == "__main__":
-    pygame.init()
-    pygame.display.set_caption(GAME_CAPTION)
+config = Game().config
 
-    screen = pygame.display.set_mode((size_x, size_y))
-    if fullscreen:
-        pygame.display.toggle_fullscreen()
+pygame.init()
+pygame.display.set_caption(config['GAME_CAPTION'])
 
-    print()
+screen = pygame.display.set_mode((config['size_x'], config['size_y']))
+if config['fullscreen']:
+    pygame.display.toggle_fullscreen()
 
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        pygame.display.flip()
+world = World()
 
-    pygame.quit()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    pygame.display.flip()
+
+pygame.quit()
