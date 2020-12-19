@@ -13,13 +13,14 @@ screen = pygame.display.set_mode((config['size_x'], config['size_y']))
 if config['fullscreen']:
     pygame.display.toggle_fullscreen()
 
-world = World()
-
+event_reaction = EventReaction()
+active_window = ActiveWindow()
 running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-    pygame.display.flip()
 
+while event_reaction.running:
+    event_reaction.react(pygame.event.get())
+    
+    active_window.show()
+    
+    pygame.display.flip()
 pygame.quit()

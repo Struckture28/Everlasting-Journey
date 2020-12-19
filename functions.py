@@ -6,6 +6,7 @@ import math
 import pygame
 from pygame import Color, color
 
+import objects
 
 def y_from_bottom(y):
     return Game('size_y') - y
@@ -22,14 +23,9 @@ class Config:
                            
                            "scale": 50
                        }''')
-        try:
-            with open("config.json", "r", encoding="utf-8") as config:
-                self.config = json.load(config)
-        except FileNotFoundError:
-            with open('config.json', "w", encoding='utf-8') as file:
-                file.write(self.defaults)
+        with open("config.json", "r", encoding="utf-8") as config:
+            self.config = json.load(config)
 
-    
     def __call__(self, parameter):
         return self.config[parameter]
     
@@ -73,12 +69,22 @@ class World:
             board.append([])
             for tile in range(0, self.game.config['size_y'] // self.game.config['chanks'] + 1):
                 board[row] += [Tile('grass', (tile, row))]
-            print(board[row])
         self.board = board
     
     def set_weather_rainy(self, rainy=True):
         self.is_rainy = rainy
 
+
+class ActiveWindow:
+    def __init__(self):
+        self.current_window = Menu()
+
+    def show(self):
+        self.current_window.display()
+    
+    def set(self, window):
+        self.current_window = window
+        
 
 class Inventory:
     def __init__(self, size=[[0]*6]*4):
@@ -166,3 +172,16 @@ class Quest:
     
     def set_completed(self):
         self.completed = True
+
+
+class EventReaction:
+    def __init__(self):
+        self.running = True
+    
+    def react(self, events):
+        for event in events:
+            self.check_quit(event)
+            
+    def check_quit(self, event):
+        if event.type == pygame.QUIT:
+            self.running = False
