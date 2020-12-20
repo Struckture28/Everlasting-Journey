@@ -8,6 +8,7 @@ from pygame import Color, color
 
 import objects
 
+
 def y_from_bottom(y):
     return Game('size_y') - y
 
@@ -43,8 +44,8 @@ class Game:
     def config(self, pamameter):
         return self.config[pamameter]
     
-    # def display(self):
-    #     pass
+    def display(self):
+        pass
     
     def get_tile_size(self):
         return math.ceil(self.config['size_x'] / self.config['scale'])
