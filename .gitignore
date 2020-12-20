@@ -1,4 +1,4 @@
 *.json
 *.pyc
-*.gitattributes
-*.github
+.gitattributes
+.github/ISSUE_TEMPLATE
